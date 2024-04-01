@@ -119,10 +119,21 @@ sudo apt install -y libfreetype6-dev
 pip install -r requirements.txt
 ```
 After that it is necessary to install tensorflow lite and tensorflow.
-Tensorflow can be downloaded from ufficial repo (or you can use the one in this repo)
+Tensorflow can be downloaded from ufficial repo here https://developer.download.nvidia.com/compute/redist/jp/v50/tensorflow/ (or you can use the one in this repo)
+First install dependencies, as described https://forums.developer.nvidia.com/t/official-tensorflow-for-jetson-nano/71770 .
 ```
-Then install dependencies:
+sudo apt-get install -y libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip libjpeg8-dev liblapack-dev libblas-dev gfortran  
+pip install --verbose 'protobuf<4' 'Cython<3'
 ```
+Then install the tensorflow package with:
+```
+pip install tensorflow-2.8.0+nv22.3-cp38-cp38-linux_aarch64.whl
+```
+Finally install tensorflow-lite with:
+```
+pip install tflite-runtime
+```
+
 After all these steps, we are ready to evaluate performance of YOLOV5 and YOLOV8 on Nidia Jetson Nano.
 
 # Evaluation of Time performances
@@ -131,7 +142,21 @@ Copy the file evaluate_nn.py in the yolov5 folder:
 ```
 ~/myYoloTest/performance_evaluation/evaluate_nn.py ~/yolov5/
 ```
-move in the folder and run it 
+move in the folder.
+```
+cd ~/yolov5/
+```
+Then the dataset to evaluate the time performance shall be downloaded.
+For COCO dataset, download the val2017 with
+```
+wget http://images.cocodataset.org/zips/val2017.zip
+```
+and unzip it, with:
+```
+unzip val2017.zip
+```
+
+Run it 
 ```
 cd ~/yolov5/
 python  ~/yolov5/evaluate_nn.py
@@ -153,7 +178,7 @@ TO DO: Take the parameters from the commandline and use directly them.
 
 # Evaluation of MAP50 and MAP50-95 performances
 For the evaluation of map50-95 two different script were used to evaluate the performances.
-evaluate_map50-95.py allows to evaluate the performance of YOLOv8 and YOLOv5U. As the previous script, the network is selected through the same parameters. 
+evaluate_map50-95.py allows to evaluate the performance of YOLOv8 and YOLOv5U. As the previous script, the network is selected through the same parameters.
 Firstly, copy the file evaluate_map50-95.py in the yolov5 folder:
 ```
 cp ~/myYoloTest/performance_evaluation/evaluate_map50-95.py ~/yolov5/
@@ -178,3 +203,5 @@ print(" map50 result :" + str(map50))
 print(" map50-95 result :" + str(map))
 ```
 before the return statement of the run function.
+
+Note: the coco_dataset will be downloaded launching the script.
