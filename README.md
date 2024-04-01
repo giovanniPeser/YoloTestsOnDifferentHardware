@@ -62,7 +62,7 @@ This action will install also a generic pytorch version for an aarch64, which do
 ```
 pip unistall torch
 ```
-Then it is the necessary to build the package on the target. In this repo the package "torch-1.10.0-cp38-cp38m-linux_arch64_and_cuda_for_nvidia_tegra_for_Nvidia_Jetson_nano.whl" is provided to allow to avoid the compilation of the target.
+Then it is the necessary to build the package on the target. In this repo the package "torch-1.10.0-cp38-cp38m-linux_arch64_and_cuda_for_nvidia_tegra_for_Nvidia_Jetson_nano.whl" is provided to allow to avoid the compilation of the target (not inside the repo because the package is too large, so you can download it from https://drive.google.com/drive/folders/1jXAXIwzU_RkvbECZpwtRjIZkBu7Qv72I?usp=sharing)
 Once download, you can simply install it with:
 ```
 pip install torch-1.10.0-cp38-cp38m-linux_arch64_and_cuda_for_nvidia_tegra_for_Nvidia_Jetson_nano.whl
@@ -98,6 +98,7 @@ and install it
 cd torchvision
 sudo /home/giovanni/Python-3.8.12/myenv/bin/python setup.py install
 ```
+In this repo the package "torchvision-0.11.0a0+fa347eb-cp38-cp38-linux_arch64_and_cuda_for_nvidia_tegra_for_Nvidia_Jetson_nano.whl" is provided to allow to avoid the compilation of the target (not inside the repo because the package is too large, so you can download it from https://drive.google.com/drive/folders/1jXAXIwzU_RkvbECZpwtRjIZkBu7Qv72I?usp=sharing)
 
 After the installation, also the yolov5 was downloaded to use it for yolov5 tests. In particular executing the following steps, as described https://docs.ultralytics.com/yolov5/tutorials/running_on_jetson_nano/#deepstream-configuration-for-yolov5 .
 ```
@@ -119,7 +120,7 @@ sudo apt install -y libfreetype6-dev
 pip install -r requirements.txt
 ```
 After that it is necessary to install tensorflow lite and tensorflow.
-Tensorflow can be downloaded from ufficial repo here https://developer.download.nvidia.com/compute/redist/jp/v50/tensorflow/ (or you can use the one in this repo)
+Tensorflow can be downloaded from ufficial repo here https://developer.download.nvidia.com/compute/redist/jp/v50/tensorflow/ (or you can use the one in repo, which is "tensorflow-2.8.0+nv22.3-cp38-cp38-linux_aarch64.whl". Actually, it is not inside the repo because the package is too large, so you can download it from https://drive.google.com/drive/folders/1jXAXIwzU_RkvbECZpwtRjIZkBu7Qv72I?usp=sharing)
 First install dependencies, as described https://forums.developer.nvidia.com/t/official-tensorflow-for-jetson-nano/71770 .
 ```
 sudo apt-get install -y libhdf5-serial-dev hdf5-tools libhdf5-dev zlib1g-dev zip libjpeg8-dev liblapack-dev libblas-dev gfortran  
