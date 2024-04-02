@@ -1,6 +1,8 @@
-authors:
-  - given-names: Giovanni
-    family-names: Peserico
-    email: pesericog@yahoo.it
-    orcid: 'https://orcid.org/0000-0001-5444-6946'
-repository-code: 'https://github.com/giovanniPeser/myYoloTest'
+@misc{yoloTest,
+  author = {Giovanni Peserico},
+  title = {YoloTestsOnDifferentHardware},
+  year = {2024},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/giovanniPeser/YoloTestsOnDifferentHardware.git}}
+}
