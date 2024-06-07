@@ -8,16 +8,6 @@ from rich.panel import Panel
 from matplotlib.ticker import ScalarFormatter
 # from scipy.constants.constants import alpha
 
-Labels = ["Y5s:640", "Y5s:320", "Qint8Y5s:640", "Qint8Y5s:320", "Y5n:640", "Y5n:320", "Qint8Y5n:640", "Qint8Y5n:320",
-          "Y5su:640", "Y5su:320", "Qint8Y5su:640", "Qint8Y5su:320", "Y5nu:640", "Y5nu:320", "Qint8Y5nu:640", "Qint8Y5nu:320",
-          "Y8s:640", "Y8s:320", "Qint8Y8s:640", "Qint8Y8s:320", "Y8n:640", "Y8n:320", "Qint8Y8n:640", "Qint8Y8n:320"]
-
-Labels2 = ["Yolo5",
-          "Yolo5U",
-          "Yolo8"]
-
-Labels3 = ["s", "n"]
-
 def filterAll(myarray):
     for i in range(0,len(myarray)):
         if(myarray[i]=="/"):
@@ -55,55 +45,41 @@ def getData(myarray, multi1000= True):
                 myarray[i] = float(myarray[i])
             toret[Labels2[i//8]].append(myarray[i])
     return toret
-        
+
+def plotData(data, name):
+    fig4 = plt.figure()
+    ax4 = plt.subplot()
+    ax4.grid()
+    ax4.set_ylabel("COCO mAP50-95")
+    ax4.set_xlabel("Latency [ms/img]")
+    if(name=="rasp"):
+        myplot(ax4,data["cpu"], data["map50-95"], "-o", "CPU")
+    else:
+        myplot(ax4,data["cpu"], data["map50-95"], "-o", "GPU")
+        myplot(ax4,data["gpu"], data["map50-95"], "-o", "GPU")
+    ax4.legend(shadow=False, fontsize='medium',frameon=True,loc = 'lower right', prop={'size': 8})
+    fig4.savefig(name+'_640.pdf',format='pdf',dpi = 1200)
+    plt.show()
+
+Labels = ["Y5s:640", "Y5s:320", "Qint8Y5s:640", "Qint8Y5s:320", "Y5n:640", "Y5n:320", "Qint8Y5n:640", "Qint8Y5n:320",
+          "Y5su:640", "Y5su:320", "Qint8Y5su:640", "Qint8Y5su:320", "Y5nu:640", "Y5nu:320", "Qint8Y5nu:640", "Qint8Y5nu:320",
+          "Y8s:640", "Y8s:320", "Qint8Y8s:640", "Qint8Y8s:320", "Y8n:640", "Y8n:320", "Qint8Y8n:640", "Qint8Y8n:320"]
+
+Labels2 = ["YOLO5",
+          "YOLO5U",
+          "YOLO8"]
+
+Labels3 = ["s", "n"]
 
 filename = "result_for_plot.csv"
 ex = pd.read_csv(filename, header=None, index_col=None)
-
 filename = "result_precision.csv"
 precision = pd.read_csv(filename, header=None, index_col=None)
-
-            
+         
 nvidia = {"cpu": getData(np.array(ex[0][2:])), "gpu": getData(np.array(ex[1][2:])), "map50-95":getData(np.array(precision[1][1:]), False)}
 dell = {"cpu": getData(np.array(ex[2][2:])), "gpu": getData(np.array(ex[3][2:])), "map50-95":getData(np.array(precision[1][1:]), False)}
 raspberry = {"cpu": getData(np.array(ex[4][2:])), "map50-95":getData(np.array(precision[1][1:]), False)}
 
-"""
-filterAll(nvidia["cpu"])
-filterAll(nvidia["gpu"])
-filterAll(dell["cpu"])
-filterAll(dell["cpu"])
-filterAll(raspberry["cpu"])
-"""
-print(nvidia)
-print(dell)
-print(raspberry)
-
-fig4 = plt.figure()
-#yfmt = ScalarFormatter()
-#yfmt.set_powerlimits((0,1)) 
-ax4 = plt.subplot()
-ax4.grid()
-#ax4.set_xlim([4,60])
-#ax4.set_title("Performances on Nvidia Jetson Nano with size=640")
-ax4.set_ylabel("COCO mAP50-95")
-ax4.set_xlabel("Latency [ms/img]")
-#ax4.yaxis.set_major_formatter(yfmt)
-#ax4.plot(nvidia["cpu"][Labels2[0]] ,nvidia["map50-95"][Labels2[0]],'-o', label = Labels2[0] + " on CPU")
-#ax4.plot(nvidia["cpu"][Labels2[1]] ,nvidia["map50-95"][Labels2[1]],'-o', label = Labels2[1] + " on CPU")
-#ax4.plot(nvidia["cpu"][Labels2[1]] ,nvidia["map50-95"][Labels2[2]],'-o', label = Labels2[2] + " on CPU")
-myplot(ax4,raspberry["cpu"], raspberry["map50-95"], "-o", "CPU")
-#myplot(ax4,dell["gpu"], dell["map50-95"], "-o", "GPU")
-
-#ax4.plot(nvidia["gpu"][Labels2[0]] ,nvidia["map50-95"][Labels2[0]],'-o', label = Labels2[0] + " on GPU")
-#ax4.plot(nvidia["gpu"][Labels2[1]] ,nvidia["map50-95"][Labels2[1]],'-o', label = Labels2[1] + " on GPU")
-#ax4.plot(nvidia["gpu"][Labels2[1]] ,nvidia["map50-95"][Labels2[2]],'-o', label = Labels2[2] + " on GPU")
-#ax4.plot(snr6,per6,label = '54 Mbps with Nist 500 byte NEW',color='r',LineWidth = 1,LineStyle = '-') 
-#ax4.plot(snr5,per5,label = '54 Mbps with Nist 500 byte',color='b',LineWidth = 1,LineStyle = '-') 
-#ax4.plot(snr6_n ,per6_n,label = '6 Mbps with Nist 50 byte NEW',color='y',LineWidth = 1,LineStyle = '-') 
-#ax4.plot(nvidia["cpu"] ,nvidia["map50-95"],'-ro', label = 'Nvidia CPU')#,LineStyle = '-',marker='*',markevery=5)
-#ax4.plot(power ,np.array(udp_mean)-np.array(udp_std),LineWidth = 1,color='C1',LineStyle = '-.',alpha = 0.6)#,marker='*',markevery=5)
-#ax4.plot(snr6_o,per6_o,label = '6 Mbps with Nist 50byte',color='y',LineWidth = 1,LineStyle = '-') 
-legend = ax4.legend(shadow=False, fontsize='medium',frameon=True,loc = 'lower right', prop={'size': 8})
-fig4.savefig('rasp_640.pdf',format='pdf',dpi = 1200)
-plt.show()
+plotData(raspberry,"rasp")
+plotData(dell,"dell")
+plotData(nvidia,"nvidia")
