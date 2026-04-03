@@ -206,3 +206,22 @@ print(" map50-95 result :" + str(map))
 before the return statement of the run function.
 
 Note: the coco_dataset will be downloaded launching the script.
+
+# Link to papers
+
+    Conference paper: https://ieeexplore.ieee.org/document/10710707
+
+    Citation:
+
+    @INPROCEEDINGS{10710707,
+      author={Peserico, Giovanni and Morato, Alberto},
+      booktitle={2024 IEEE 29th International Conference on Emerging Technologies and Factory Automation (ETFA)}, 
+      title={Performance Evaluation of YOLOv5 and YOLOv8 Object Detection Algorithms on Resource-Constrained Embedded Hardware Platforms for Real-Time Applications}, 
+      year={2024},
+      volume={},
+      number={},
+      pages={1-7},
+      keywords={YOLO;Performance evaluation;Embedded systems;Surveillance;Inference algorithms;Hardware;Real-time systems;Fifth Industrial Revolution;Manufacturing automation;Industrial Internet of Things;YOLO;Neural Network;AI;Embedded System;real-time;measurements;detection;nvidia;gpu;cpu},
+      doi={10.1109/ETFA61755.2024.10710707}
+    }
+
