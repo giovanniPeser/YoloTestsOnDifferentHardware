@@ -209,10 +209,10 @@ Note: the coco_dataset will be downloaded launching the script.
 
 # Link to papers
 
-    Conference paper: https://ieeexplore.ieee.org/document/10710707
+    Conference paper: https://ieeexplore.ieee.org/document/10710707(https://ieeexplore.ieee.org/document/10710707)
 
     Citation:
-
+```
     @INPROCEEDINGS{10710707,
       author={Peserico, Giovanni and Morato, Alberto},
       booktitle={2024 IEEE 29th International Conference on Emerging Technologies and Factory Automation (ETFA)}, 
@@ -224,4 +224,5 @@ Note: the coco_dataset will be downloaded launching the script.
       keywords={YOLO;Performance evaluation;Embedded systems;Surveillance;Inference algorithms;Hardware;Real-time systems;Fifth Industrial Revolution;Manufacturing automation;Industrial Internet of Things;YOLO;Neural Network;AI;Embedded System;real-time;measurements;detection;nvidia;gpu;cpu},
       doi={10.1109/ETFA61755.2024.10710707}
     }
+```
 
