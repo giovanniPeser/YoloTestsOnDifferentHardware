@@ -208,10 +208,9 @@ before the return statement of the run function.
 Note: the coco_dataset will be downloaded launching the script.
 
 # Link to papers
+Conference paper: https://ieeexplore.ieee.org/document/10710707(https://ieeexplore.ieee.org/document/10710707)
 
-    Conference paper: https://ieeexplore.ieee.org/document/10710707(https://ieeexplore.ieee.org/document/10710707)
-
-    Citation:
+Citation:
 ```
     @INPROCEEDINGS{10710707,
       author={Peserico, Giovanni and Morato, Alberto},
